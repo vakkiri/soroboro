@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/door.png-5e6c8c1f485ac865ec3f4b714d68e3fe.stex"
+path="res://.import/player-idle.png-824e4c3e3d603715c525cb3757df9812.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/door.png"
-dest_files=[ "res://.import/door.png-5e6c8c1f485ac865ec3f4b714d68e3fe.stex" ]
+source_file="res://assets/images/player-idle.png"
+dest_files=[ "res://.import/player-idle.png-824e4c3e3d603715c525cb3757df9812.stex" ]
 
 [params]
 

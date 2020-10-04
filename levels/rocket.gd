@@ -23,13 +23,14 @@ func explode():
 	get_parent().shake()
 	for i in range(5):
 		var explosion = EXPLOSION.instance()
-		explosion.offset.x = position.x + (randi() % 16) - 8
-		explosion.offset.y = position.y + (randi() % 16) - 8
+		explosion.offset.x = position.x + (randi() % 24) - 12
+		explosion.offset.y = position.y + (randi() % 24) - 12
 		get_parent().add_child(explosion)
 	var blast = BLAST.instance()
 	blast.position.x = position.x
 	blast.position.y = position.y
 	get_parent().add_child(blast)
+	$"/root/RocketSound".play()
 	queue_free()
 	
 func _process(delta):

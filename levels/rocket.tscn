@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
-height = 6.0
+height = 0.0
 
 [node name="rocket" type="Area2D"]
 script = ExtResource( 2 )

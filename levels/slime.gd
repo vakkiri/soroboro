@@ -10,11 +10,12 @@ var SPEED_ACCEL = 0
 const FRICTION = 5
 const AIR_DRAG = 3
 
-var MAX_Y = 100
+var MAX_Y = 200
 var vx = 0
 var vy = 0
 var start_y = 0
 
+var turn_timer = 0
 var jump_period
 
 func _ready():
@@ -57,6 +58,10 @@ func _physics_process(delta):
 	if (vx < -MAX_SPEED):
 		vx = -MAX_SPEED
 		
+	turn_timer -= delta
+	if (turn_timer < 0):
+		turn_timer = 0
+		
 	motion = move_and_slide(motion, UP)
 	
 	if SPEED_ACCEL > 0:
@@ -67,6 +72,11 @@ func _physics_process(delta):
 		if position.x < 0:
 			position.x += 320
 			position.y = start_y
+			
+	if is_on_wall() and is_on_floor() and turn_timer == 0:
+		turn_timer = 1
+		SPEED_ACCEL *= -1
+		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
 
 
 func kill():

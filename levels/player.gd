@@ -7,7 +7,7 @@ const UP = Vector2(0, -1)
 const GRAVITY = 8.5
 const MAX_SPEED = 90
 const SPEED_ACCEL = 12
-const JUMP = -180
+const JUMP = -195
 const FRICTION = 5
 const AIR_DRAG = 3
 
@@ -19,6 +19,8 @@ var vx = 0
 var vy = 0
 
 var jump_period
+
+var fall_timer = 0
 
 func _ready():
 	$AnimatedSprite.animation = "idle"
@@ -74,7 +76,9 @@ func _physics_process(delta):
 		left_pressed_last = false
 	if Input.is_action_just_pressed("ui_left"):
 		left_pressed_last = true
-			
+	if Input.is_action_just_pressed("ui_down"):
+		check_door()
+		
 	handle_gravity(delta)
 	
 	if (motion.y > MAX_Y):
@@ -92,12 +96,16 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		jump_period = 0.2
+		if fall_timer > 0.5:
+			$"/root/FallSound".play()
+			fall_timer = 0
+	else:
+		fall_timer += delta
 	if jump_period > 0:
 		if Input.is_action_just_pressed("jump"):
 			motion.y = JUMP
+			$"/root/JumpSound".play()
 			jump_period = 0
-			#$AnimatedSprite.animation = "jump"
-			#$"/root/JumpSound".play()
 	if Input.is_action_just_pressed("shoot"):
 		var rocket = ROCKET.instance()
 		if facing_left:
@@ -120,8 +128,14 @@ func _physics_process(delta):
 
 
 func hit():
-	print("OUCH")
+	die()
 
 
 func die():
-	get_tree().get_root().find_node("root", true, false).reset()
+	get_tree().reload_current_scene()
+
+
+func check_door():
+	var door = get_tree().get_root().find_node("door", true, false)
+	if self in door.get_overlapping_bodies():
+		door.use()

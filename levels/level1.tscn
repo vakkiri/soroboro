@@ -687,11 +687,15 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 15/shapes = [  ]
 15/z_index = 0
 
-[node name="level1" type="Node2D"]
+[node name="level" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="door" parent="." instance=ExtResource( 5 )]
 position = Vector2( 160, 128 )
+next0 = 1
+next1 = 2
+next2 = 1
+next3 = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 18 )

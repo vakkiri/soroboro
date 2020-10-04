@@ -22,3 +22,12 @@ func _process(delta):
 			active_indicator = 0
 		child_name = "indicator" + str(active_indicator + 1)
 		get_node(child_name).set_active()
+
+
+func load_level(level):
+	find_node("level", true, false).queue_free()
+	remove_child(find_node("level", true, false))
+	add_child(load("res://levels/level" +  str(level) + ".tscn").instance())
+
+	
+	

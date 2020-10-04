@@ -13,7 +13,7 @@ func _process(delta):
 	spawn_timer -= delta
 	
 	if spawn_timer <= 0:
-		spawn_timer = 2
+		spawn_timer = 3.5
 		var slime = SLIME.instance()
 		slime.position.x = position.x
 		slime.position.y = position.y

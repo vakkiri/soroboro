@@ -19,6 +19,12 @@ config/name="soroboro"
 run/main_scene="res://root.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+RocketSound="*res://assets/audio/rocket_sound.tscn"
+JumpSound="*res://assets/audio/jump_sound.tscn"
+FallSound="*res://assets/audio/fall_sound.tscn"
+
 [display]
 
 window/size/width=320

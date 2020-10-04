@@ -20,7 +20,7 @@ func _process(delta):
 		if position.x < -2:
 			position.x += rand_range(1, shake_factor) * delta
 		elif position.x > 2:
-			position.x += rand_range(1, shake_factor) * delta
+			position.x -= rand_range(1, shake_factor) * delta
 		elif randi() % 2 == 0:
 			position.x += rand_range(1, shake_factor) * delta
 		else:
@@ -29,7 +29,7 @@ func _process(delta):
 		if position.y < -2:
 			position.y += rand_range(1, shake_factor) * delta
 		elif position.y > 2:
-			position.y += rand_range(1, shake_factor) * delta
+			position.y -= rand_range(1, shake_factor) * delta
 		elif randi() % 2 == 0:
 			position.y += rand_range(1, shake_factor) * delta
 		else:

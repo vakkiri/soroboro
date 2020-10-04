@@ -5,7 +5,6 @@ var NUM_INDICATORS = 4
 var time = 0
 var active_indicator = 0
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var child_name = "indicator" + str(active_indicator + 1)

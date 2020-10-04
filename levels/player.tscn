@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/images/player-idle.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/player-run.png" type="Texture" id=2]
 [ext_resource path="res://levels/player.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/player-hit.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/player-dead.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -35,6 +37,16 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "ded",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=7]
@@ -46,8 +58,7 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-animation = "run"
-frame = 1
+animation = "ded"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -21,16 +21,20 @@ var vy = 0
 var jump_period
 
 var fall_timer = 0
+var death_timer = 0
+
+var state = "ALIVE"
 
 func _ready():
 	$AnimatedSprite.animation = "idle"
+	state = "ALIVE"
 	facing_left = false
 	vx = 0
 	jump_period = 0
 
 
 func handle_gravity(delta):
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") or state == "HIT":
 		motion.y += GRAVITY
 	else:
 		motion.y += GRAVITY * 2
@@ -70,8 +74,52 @@ func handle_movement():
 	else:
 		$AnimatedSprite.animation = "idle"
 
-
 func _physics_process(delta):
+	if state == "ALIVE":
+		_alive_process(delta)
+	elif state == "HIT":
+		$AnimatedSprite.animation = "hit"
+		death_timer -= delta
+		if death_timer <= 0:
+			$AnimatedSprite.animation = "ded"
+			state = "DEAD"
+		_hit_process(delta)
+	else:
+		die()
+		
+		
+func _hit_process(delta):
+	handle_gravity(delta)
+	
+	if (motion.y > MAX_Y):
+		motion.y = MAX_Y
+	if (vx > MAX_SPEED):
+		vx = MAX_SPEED
+	if (vx < -MAX_SPEED):
+		vx = -MAX_SPEED
+		
+	jump_period -= delta;
+	if (jump_period < 0):
+		jump_period = 0
+		
+	motion.x = vx
+	
+	if is_on_floor():
+		jump_period = 0.2
+		if fall_timer > 0.5:
+			$"/root/FallSound".play()
+			fall_timer = 0
+	else:
+		fall_timer += delta
+	
+	motion = move_and_slide(motion, UP)
+	if position.x > 320:
+		position.x -= 320
+	if position.x < 0:
+		position.x += 320
+		
+		
+func _alive_process(delta):
 	if Input.is_action_just_pressed("ui_right"):
 		left_pressed_last = false
 	if Input.is_action_just_pressed("ui_left"):
@@ -128,11 +176,14 @@ func _physics_process(delta):
 
 
 func hit():
-	die()
+	if state == "ALIVE":
+		state = "HIT"
+		death_timer = 1
+		motion.y = -150
 
 
 func die():
-	get_tree().reload_current_scene()
+	get_tree().get_root().find_node("root", true, false).on_death()
 
 
 func check_door():

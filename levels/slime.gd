@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const ROCKET = preload("res://levels/rocket.tscn")
+const EXPLOSION = preload("res://levels/slime-explode.tscn")
 
 var motion = Vector2()
 const UP = Vector2(0, -1)
@@ -80,6 +80,11 @@ func _physics_process(delta):
 
 
 func kill():
+	var explosion = EXPLOSION.instance()
+	explosion.offset.x = position.x
+	explosion.offset.y = position.y
+	get_parent().add_child(explosion)
+		
 	queue_free()
 
 

@@ -19,7 +19,6 @@ func set_accel(accel):
 	$TextureRect.flip_h = (ax < 0)
 
 func explode():
-	# TODO: should create some kind of AOE node which kills monsters
 	get_parent().shake()
 	for i in range(5):
 		var explosion = EXPLOSION.instance()

@@ -1,7 +1,9 @@
 extends AnimatedSprite
 
 func _ready():
-	speed_scale = rand_range(2.0, 4.0)
+	randomize()
+	frame = 0
+	speed_scale = rand_range(1.5, 3.0)
 	connect("animation_finished", self, "_on_animation_finished")
 
 func _on_animation_finished():

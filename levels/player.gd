@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const ROCKET = preload("res://levels/rocket.tscn")
+const EXPLOSION = preload("res://levels/explosion2.tscn")
 
 var motion = Vector2()
 const UP = Vector2(0, -1)
@@ -155,6 +156,14 @@ func _alive_process(delta):
 			$"/root/JumpSound".play()
 			jump_period = 0
 	if Input.is_action_just_pressed("shoot"):
+		for i in range(5):
+			var explosion = EXPLOSION.instance()
+			explosion.offset.x = position.x + (randi() % 14)
+			explosion.offset.y = position.y + (randi() % 8) - 4
+			if (facing_left):
+				explosion.offset.x -= 16
+			get_parent().add_child(explosion)
+		
 		var rocket = ROCKET.instance()
 		if facing_left:
 			rocket.set_accel(-0.3)

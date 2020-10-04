@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 RocketSound="*res://assets/audio/rocket_sound.tscn"
 JumpSound="*res://assets/audio/jump_sound.tscn"
 FallSound="*res://assets/audio/fall_sound.tscn"
+DoorSlide="*res://door_slide.tscn"
 
 [display]
 

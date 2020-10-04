@@ -13,6 +13,8 @@ func _ready():
 
 
 func open():
+	if not _open:
+		$"/root/DoorSlide".play()
 	$AnimatedSprite.playing = true
 	_open = true
 

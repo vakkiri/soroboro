@@ -49,6 +49,6 @@ animations = [ {
 
 [node name="slime-explode" type="AnimatedSprite"]
 frames = SubResource( 10 )
-frame = 2
+frame = 4
 playing = true
 script = ExtResource( 1 )

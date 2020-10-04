@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://levels/spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/images/tiles1.png" type="Texture" id=6]
 [ext_resource path="res://assets/images/doorbg.png" type="Texture" id=7]
 [ext_resource path="res://assets/images/tiles2.png" type="Texture" id=8]
+[ext_resource path="res://levels/bug.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/bug.gd" type="Script" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0.114431, 16, 0, 0, 15.9081, 0.0603409 )
@@ -708,7 +710,7 @@ tile_data = PoolIntArray( 393228, 19, 0, 393230, 20, 0, 393234, 19, 0, 393236, 1
 tile_set = SubResource( 19 )
 cell_size = Vector2( 1, 1 )
 format = 1
-tile_data = PoolIntArray( 65541, 1, 0, 4194368, 8, 0, 4194388, 9, 0, 4194403, 1, 0, 4194468, 0, 0, 4194554, 11, 0, 6291589, 9, 0, 6291634, 0, 0, 6291666, 11, 0, 6291671, 10, 0, 8388691, 0, 0, 8388706, 1, 0, 8388848, 8, 0, 9371753, 12, 0, 9371846, 14, 0, 9961616, 8, 0, 9961628, 9, 0, 9961639, 10, 0, 10027096, 7, 0, 10354770, 6, 0, 10485890, 9, 0, 10485898, 15, 0, 10485946, 11, 0, 10486023, 10, 0, 11010131, 0, 0, 11010145, 1, 0, 11010274, 0, 0, 12058773, 4, 0, 12124318, 5, 0, 12124358, 7, 0, 12189841, 6, 0, 12189866, 6, 0, 12320993, 4, 0, 12452021, 3, 0 )
+tile_data = PoolIntArray( 4194368, 8, 0, 4194388, 9, 0, 4194403, 1, 0, 4194468, 0, 0, 4194554, 11, 0, 6291589, 9, 0, 6291634, 0, 0, 6291666, 11, 0, 6291671, 10, 0, 8388691, 0, 0, 8388706, 1, 0, 8388848, 8, 0, 9371753, 12, 0, 9371846, 14, 0, 9961616, 8, 0, 9961628, 9, 0, 9961639, 10, 0, 10027096, 7, 0, 10354770, 6, 0, 10485890, 9, 0, 10485898, 15, 0, 10485946, 11, 0, 10486023, 10, 0, 11010131, 0, 0, 11010145, 1, 0, 11010274, 0, 0, 12058773, 4, 0, 12124318, 5, 0, 12124358, 7, 0, 12189841, 6, 0, 12189866, 6, 0, 12320993, 4, 0, 12452021, 3, 0 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 128.0
@@ -732,3 +734,7 @@ side = "LEFT"
 
 [node name="spawner2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 332, 104 )
+
+[node name="bug" parent="." instance=ExtResource( 9 )]
+position = Vector2( 188, 84 )
+script = ExtResource( 10 )

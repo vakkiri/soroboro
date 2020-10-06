@@ -13,14 +13,14 @@ func _process(delta):
 	spawn_timer -= delta
 	
 	if spawn_timer <= 0:
-		spawn_timer = 3.5
+		spawn_timer = 4
 		var slime = SLIME.instance()
 		slime.position.x = position.x
 		slime.position.y = position.y
 		slime.start_y = position.y
 		if (side == "RIGHT"):
-			slime.SPEED_ACCEL = -11.5
+			slime.SPEED_ACCEL = -10
 			slime.find_node("AnimatedSprite").flip_h = true
 		else:
-			slime.SPEED_ACCEL = 11.5
+			slime.SPEED_ACCEL = 10
 		get_parent().add_child(slime)

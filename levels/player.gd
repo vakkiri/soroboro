@@ -35,7 +35,7 @@ func _ready():
 
 
 func handle_gravity(delta):
-	if Input.is_action_pressed("jump") or state == "HIT":
+	if Input.is_action_pressed("jump") or state == "HIT" or Input.is_action_pressed("ui_up"):
 		motion.y += GRAVITY
 	else:
 		motion.y += GRAVITY * 2
@@ -151,7 +151,7 @@ func _alive_process(delta):
 	else:
 		fall_timer += delta
 	if jump_period > 0:
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("ui_up"):
 			motion.y = JUMP
 			$"/root/JumpSound".play()
 			jump_period = 0
